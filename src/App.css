@@ -1,20 +1,3 @@
-header {
-  display: flex;
-  align-items: center;
-}
-
-header nav ul {
-  display: flex;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-header nav ul li {
-  display: inline;
-  float: left;
-  padding: 1rem 1rem;
-}
 
 footer {
   display: flex;
@@ -24,4 +7,95 @@ footer {
 footer div {
   padding: 1rem 1rem;
 
+}
+
+footer img {
+  width: 128px;
+  height: 96px; 
+}
+
+.heroshot {
+  display: flex;
+  flex: 1;
+  background-color: #495e57;
+  color: #EDEFEE;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.heroshot .heroleft {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 8rem;  
+  padding-bottom: 2rem;
+  line-height: 1;
+}
+
+
+.heroshot .heroleft h2 {
+  background-color: green;
+  color: #F4CE14;
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.heroshot .heroleft h3 {
+  color: #EDEFEE;
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.heroshot .heroleft p {
+  color: #EDEFEE;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.heroshot .heroright {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.heroshot .heroright .foodserving {
+  width: 25rem;
+  height: 30rem;
+  border-radius: 1rem;
+  object-fit: cover;
+  transform: translateY(3rem);
+}
+
+.weekspecials {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+}
+
+.weekspecials .firstline {
+  display: flex;
+  height: 3rem;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.weekspecials .firstline .header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weekspecials .firstline .header h2 {
+  font-size: 3rem; 
+}
+.weekspecials .firstline .buttonholder {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

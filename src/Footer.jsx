@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Logo from './logo.png';
+import Logo from './images/logo.svg';
 import Nav from './Nav';
 
 const Footer = () => {

@@ -4,23 +4,23 @@ import PropTypes from 'prop-types';
 const Nav = (props) => {
   return (
     <nav>
-      <ul>
-        <li>
+      <ul className='flex'>
+        <li className='mx-1 md:mx-6'>
           <a>Home</a>
         </li>
-        <li>
+        <li className='mr-1 md:mr-6'>
           <a>About</a>
         </li>
-        <li>
+        <li className='mr-1 md:mr-6'>
           <a>Menu</a>
         </li>
-        <li>
+        <li className='mr-1 md:mr-6'>
           <a>Reservations</a>
         </li>
-        <li>
+        <li className='mr-1 md:mr-6'>
           <a>Order Online</a>
         </li>
-        <li>
+        <li className='mr-1 md:mr-6'>
           <a>Login</a>
         </li>
       </ul>
