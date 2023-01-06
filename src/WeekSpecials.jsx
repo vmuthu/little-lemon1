@@ -1,7 +1,7 @@
 import React from 'react';
 import GreekSalad from './images/greek-salad.jpg';
 import LemonDessert from './images/lemon-dessert.jpg';
-import Bruchetta from './images/bruchetta.svg';
+import Bruchetta from './images/bruchetta.png';
 import SpecialsItem from './SpecialsItem';
 
 const WeekSpecials = () => {
