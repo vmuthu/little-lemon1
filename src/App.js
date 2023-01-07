@@ -1,15 +1,25 @@
-import Footer from './Footer';
-import Header from './Header';
-import Main from './Main';
 import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Routes, Route } from 'react-router';
+import HomePage from './HomePage';
+import BookingPage from './BookingPage';
+import MenuPage from './MenuPage';
+import About from './About';
+import OrderOnline from './OrderOnline';
+import Login from './Login';
 
 function App() {
   return (
-    <div className='min-w-min-360 w-full flex flex-col align-center font-markazi'>
-      <Header />
-      <Main />
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+         <Route path='/' element={<HomePage />}></Route>
+        <Route path='/booking' element={<BookingPage />}></Route>
+        <Route path='/menu' element={<MenuPage />}></Route>
+        <Route path='/about' element={<About />}></Route>
+        <Route path='/orderonline' element={<OrderOnline />}></Route>
+        <Route path='/login' element={<Login />}></Route>
+      </Routes>
+    </Router>
   );
 }
 
