@@ -5,7 +5,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className='w-full flex flex-col align-center font-markazi'>
+    <div className='min-w-min-360 w-full flex flex-col align-center font-markazi'>
       <Header />
       <Main />
       <Footer />
