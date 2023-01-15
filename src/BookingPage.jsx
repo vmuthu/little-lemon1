@@ -1,9 +1,12 @@
-import React from 'react';
+import * as React from 'react';
+import BookingsForm from './BookingsForm';
+import Header from './Header';
 
 const BookingPage = () => {
     return (
-        <div>
-            Booking Page
+        <div className='min-w-min-360 w-full flex flex-col align-center font-markazi'>
+            <Header />
+            <BookingsForm />
         </div>
     );
 };

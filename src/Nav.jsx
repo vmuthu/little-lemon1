@@ -40,7 +40,7 @@ const Nav = (props) => {
             </div>
             <ul className='flex flex-col items-center justify-between min-h-[150px]'>
               <li>
-                <a href='/home'>Home</a>
+                <a href='/'>Home</a>
               </li>
               <li>
                 <a href='/about'>About</a>
