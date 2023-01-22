@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Routes, Route } from 'react-router';
 import HomePage from './HomePage';
-import BookingPage from './BookingPage';
+import BookingsMain from './BookingsMain';
 import MenuPage from './MenuPage';
 import About from './About';
 import OrderOnline from './OrderOnline';
@@ -13,7 +13,7 @@ function App() {
     <Router>
       <Routes>
          <Route path='/' element={<HomePage />}></Route>
-        <Route path='/reservations' element={<BookingPage />}></Route>
+        <Route path='/reservations' element={<BookingsMain />}></Route>
         <Route path='/menu' element={<MenuPage />}></Route>
         <Route path='/about' element={<About />}></Route>
         <Route path='/orderonline' element={<OrderOnline />}></Route>
