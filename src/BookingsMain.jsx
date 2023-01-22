@@ -1,7 +1,7 @@
 import * as React from 'react';
 import BookingsForm from './BookingsForm';
 import BookingsList from './BookingsList';
-import './api';
+import { fetchAPI } from  './api';
 import Header from './Header';
 
 const bookingStateReducer = (state, action) => {
@@ -10,22 +10,19 @@ const bookingStateReducer = (state, action) => {
     return state;
   }
   if (action.type === 'reserve_slot') {
-    // console.log(action.booking);
     let available = [...state.available];
-    // console.log(bookings);
     let foundAvailable = available.indexOf(action.booking.bookingTime) > -1;
 
-    if (foundAvailable && foundAvailable.length > 0) {
+    if (foundAvailable) {
       console.log(
         'Available  ' +
           action.booking.bookingDate +
           ' ' +
           action.booking.bookingTime
       );
-      console.log(foundAvailable);
-      const arrayPos = foundAvailable.indexOf(action.booking.bookingTime);
+      const arrayPos = available.indexOf(action.booking.bookingTime);
       if (arrayPos > -1) {
-        available.splice(arrayPos);
+        available.splice(arrayPos,1);
       }
     }
     return { available: available };
@@ -34,17 +31,20 @@ const bookingStateReducer = (state, action) => {
 };
 
 const initializeAvailableTimes = () => {
-  const initAvailableTimes = [
-    '17:00',
-    '18:00',
-    '19:00',
-    '20:00',
-    '21:00',
-    '22:00',
-    '23:00',
-  ];
-  // const initAvailableTimes = window.fetchAPI(Date.now());
-  return initAvailableTimes;
+  // const initAvailableTimes = [
+  //   '17:00',
+  //   '18:00',
+  //   '19:00',
+  //   '20:00',
+  //   '21:00',
+  //   '22:00',
+  //   '23:00',
+  // ];
+  const initAvailableTimes = fetchAPI(new Date());
+  const initState = {
+    available: initAvailableTimes
+  }
+  return initState;
 };
 
 const BookingsMain = () => {
@@ -96,7 +96,7 @@ const BookingsMain = () => {
               occasion
             )
           }
-          availableList={availableTimes}
+          availableList={availableTimes.available}
         />
         <BookingsList bookings={[]} />
       </article>

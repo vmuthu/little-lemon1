@@ -42,9 +42,7 @@ const BookingsForm = ({ onBookingChangeHandler, availableList }) => {
   }, [bookingDate, bookingTime, occasion, guests]);
 
   function updateButton(bkdate, bktime, ocsion, gsts) {
-    console.log(availableList);
     const foundAvailable = availableList?.indexOf(bktime) > -1;
-    console.log(bktime);
     const enableButton = foundAvailable & (ocsion !== '') &&
       gsts > 0;
     setEnableReservation(enableButton);
@@ -75,12 +73,9 @@ const BookingsForm = ({ onBookingChangeHandler, availableList }) => {
           data-testid="test-booking-time"
         >
           <option value='0'>--Select Time--</option>
-          <option>17:00</option>
-          <option>18:00</option>
-          <option>19:00</option>
-          <option>20:00</option>
-          <option>21:00</option>
-          <option>22:00</option>
+          {
+            availableList && availableList?.map((avt, i) => <option key={i}>{avt}</option>)
+          }
         </select>
         <label htmlFor='guests'>Number of guests</label>
         <input
