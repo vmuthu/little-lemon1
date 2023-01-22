@@ -10,32 +10,82 @@ const bookingStateReducer = (state, action) => {
   }
   if (action.type === 'reserve_slot') {
     // console.log(action.booking);
-    let bookings = [...state.booked];
+    let available = [...state.available];
     // console.log(bookings);
-    let foundBooking = bookings.filter(
+    let foundAvailable = available.filter(
       (bk) =>
         bk.bookingDate === action.booking.bookingDate &&
-        bk.bookingTime === action.booking.bookingTime
+        bk.bookingTime.indexOf(action.booking.bookingTime) > -1
     );
-    if (!foundBooking || foundBooking.length <= 0) {
+    if (foundAvailable && foundAvailable.length > 0) {
       console.log(
-        'Added ' + action.booking.bookingDate + ' ' + action.booking.bookingTime
+        'Available  ' +
+          action.booking.bookingDate +
+          ' ' +
+          action.booking.bookingTime
       );
-      bookings.push(action.booking);
+      const bookingObject = available.filter(
+        (bk) => bk.bookingDate === action.booking.bookingDate
+      ).at[0];
+      console.log(bookingObject);
+      const arrayPos = bookingObject.bookingTime.indexOf(
+        action.booking.bookingTime
+      );
+      if (arrayPos > -1) {
+      }
     } else {
-      foundBooking.guests = action.booking.guests;
-      foundBooking.occasion = action.booking.occasion;
+      foundAvailable.guests = action.booking.guests;
+      foundAvailable.occasion = action.booking.occasion;
     }
-    return { booked: bookings };
+    return { booked: available };
   }
   return state;
 };
 
 const BookingsMain = () => {
-  const initialBookedList = { booked: [] };
-  const [bookingsList, dispatch] = React.useReducer(
+  const initialAvailableTimes = {
+    available: [
+      {
+        bookingDate: '2023-01-23',
+        bookingTimes: [
+          '17:00',
+          '18:00',
+          '19:00',
+          '20:00',
+          '21:00',
+          '22:00',
+          '23:00',
+        ],
+      },
+      {
+        bookingDate: '2023-01-24',
+        bookingTimes: [
+          '17:00',
+          '18:00',
+          '19:00',
+          '20:00',
+          '21:00',
+          '22:00',
+          '23:00',
+        ],
+      },
+      {
+        bookingDate: '2023-01-25',
+        bookingTimes: [
+          '17:00',
+          '18:00',
+          '19:00',
+          '20:00',
+          '21:00',
+          '22:00',
+          '23:00',
+        ],
+      },
+    ],
+  };
+  const [availableTimes, dispatch] = React.useReducer(
     bookingStateReducer,
-    initialBookedList
+    initialAvailableTimes
   );
 
   const [booking, setBooking] = React.useState({
@@ -80,9 +130,9 @@ const BookingsMain = () => {
               occasion
             )
           }
-          bookingList={bookingsList.booked}
+          availableList={availableTimes.available}
         />
-        <BookingsList bookings={bookingsList} />
+        <BookingsList bookings={[]} />
       </article>
     </div>
   );

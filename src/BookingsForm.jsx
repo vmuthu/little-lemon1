@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-const BookingsForm = ({ onBookingChangeHandler, bookingList }) => {
+const BookingsForm = ({ onBookingChangeHandler, availableList }) => {
   const [bookingDate, setBookingDate] = React.useState('');
-  const [bookingTime, setBookingTime] = React.useState('0');
+  const [bookingTime, setBookingTime] = React.useState('');
   const [occasion, setOccation] = React.useState('');
   const [guests, setGuests] = React.useState(0);
   const [enableReservation, setEnableReservation] = useState(false);
@@ -42,11 +42,13 @@ const BookingsForm = ({ onBookingChangeHandler, bookingList }) => {
   }, [bookingDate, bookingTime, occasion, guests]);
 
   function updateButton(bkdate, bktime, ocsion, gsts) {
-    const foundBooking = bookingList?.filter(
-      (bk) => bk.bookingDate === bkdate && bk.bookingTime === bktime
+    console.log(availableList);
+    const foundBooking = availableList?.filter(
+      (bk) => bk.bookingDate === bkdate && 
+      bk.bookingTimes.indexOf(bktime) > -1
     );
     const enableButton =
-      (!foundBooking || foundBooking.length === 0) & (ocsion !== '') &&
+      (foundBooking && foundBooking.length > 0) & (ocsion !== '') &&
       gsts > 0;
     setEnableReservation(enableButton);
   }
@@ -71,7 +73,6 @@ const BookingsForm = ({ onBookingChangeHandler, bookingList }) => {
         <select
           id='res-time'
           className='input-ctl'
-          aria-label='Choose time'
           value={bookingTime}
           onChange={(e) => handleTimeChange(e)}
           data-testid="test-booking-time"
@@ -101,7 +102,6 @@ const BookingsForm = ({ onBookingChangeHandler, bookingList }) => {
         <select
           id='occasion'
           className='input-ctl'
-          aria-label='Occasion'
           value={occasion}
           onChange={(e) => handleOccasion(e)}
           data-testid="test-booking-occasion"

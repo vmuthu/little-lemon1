@@ -7,7 +7,14 @@ const BookingsList = (props) => {
       <h2 className='font-markazi text-4xl pb-2 md:text-5xl md:pb-4'>
         Existing Bookings
       </h2>
-      {(!props.bookings.booked || props.bookings.booked.length === 0) && (
+    </article>
+  );
+};
+
+export default BookingsList;
+
+/*
+      {(!props.bookings?.booked || props.bookings?.booked.length === 0) && (
         <span>No bookings found</span>
       )}
       {props.bookings.booked && props.bookings.booked.length > 0 && (
@@ -34,8 +41,5 @@ const BookingsList = (props) => {
           </tbody>
         </table>
       )}
-    </article>
-  );
-};
 
-export default BookingsList;
+*/

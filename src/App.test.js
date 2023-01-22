@@ -20,7 +20,48 @@ test('Render bookings main', () => {
 });
 
 test('Validate booking button', () => {
-  render(<BookingsForm />);
+  const availableTimes = {
+    available: [
+      {
+        bookingDate: '2023-01-23',
+        bookingTimes: [
+          '17:00',
+          '18:00',
+          '19:00',
+          '20:00',
+          '21:00',
+          '22:00',
+          '23:00',
+        ],
+      },
+      {
+        bookingDate: '2023-01-24',
+        bookingTimes: [
+          '17:00',
+          '18:00',
+          '19:00',
+          '20:00',
+          '21:00',
+          '22:00',
+          '23:00',
+        ],
+      },
+      {
+        bookingDate: '2023-01-25',
+        bookingTimes: [
+          '17:00',
+          '18:00',
+          '19:00',
+          '20:00',
+          '21:00',
+          '22:00',
+          '23:00',
+        ],
+      },
+    ],
+  };
+
+  render(<BookingsForm availableList={availableTimes.available} />);
   const bkdate = screen.getByTestId("test-booking-date");
   const bktime = screen.getByTestId("test-booking-time");
   const bkguests = screen.getByTestId("test-booking-guests");
