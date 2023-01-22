@@ -1,6 +1,7 @@
 import * as React from 'react';
 import BookingsForm from './BookingsForm';
 import BookingsList from './BookingsList';
+import './api';
 import Header from './Header';
 
 const bookingStateReducer = (state, action) => {
@@ -12,11 +13,8 @@ const bookingStateReducer = (state, action) => {
     // console.log(action.booking);
     let available = [...state.available];
     // console.log(bookings);
-    let foundAvailable = available.filter(
-      (bk) =>
-        bk.bookingDate === action.booking.bookingDate &&
-        bk.bookingTime.indexOf(action.booking.bookingTime) > -1
-    );
+    let foundAvailable = available.indexOf(action.booking.bookingTime) > -1;
+
     if (foundAvailable && foundAvailable.length > 0) {
       console.log(
         'Available  ' +
@@ -24,65 +22,33 @@ const bookingStateReducer = (state, action) => {
           ' ' +
           action.booking.bookingTime
       );
-      const bookingObject = available.filter(
-        (bk) => bk.bookingDate === action.booking.bookingDate
-      ).at[0];
-      console.log(bookingObject);
-      const arrayPos = bookingObject.bookingTime.indexOf(
-        action.booking.bookingTime
-      );
+      console.log(foundAvailable);
+      const arrayPos = foundAvailable.indexOf(action.booking.bookingTime);
       if (arrayPos > -1) {
+        available.splice(arrayPos);
       }
-    } else {
-      foundAvailable.guests = action.booking.guests;
-      foundAvailable.occasion = action.booking.occasion;
     }
-    return { booked: available };
+    return { available: available };
   }
   return state;
 };
 
+const initializeAvailableTimes = () => {
+  const initAvailableTimes = [
+    '17:00',
+    '18:00',
+    '19:00',
+    '20:00',
+    '21:00',
+    '22:00',
+    '23:00',
+  ];
+  // const initAvailableTimes = window.fetchAPI(Date.now());
+  return initAvailableTimes;
+};
+
 const BookingsMain = () => {
-  const initialAvailableTimes = {
-    available: [
-      {
-        bookingDate: '2023-01-23',
-        bookingTimes: [
-          '17:00',
-          '18:00',
-          '19:00',
-          '20:00',
-          '21:00',
-          '22:00',
-          '23:00',
-        ],
-      },
-      {
-        bookingDate: '2023-01-24',
-        bookingTimes: [
-          '17:00',
-          '18:00',
-          '19:00',
-          '20:00',
-          '21:00',
-          '22:00',
-          '23:00',
-        ],
-      },
-      {
-        bookingDate: '2023-01-25',
-        bookingTimes: [
-          '17:00',
-          '18:00',
-          '19:00',
-          '20:00',
-          '21:00',
-          '22:00',
-          '23:00',
-        ],
-      },
-    ],
-  };
+  const initialAvailableTimes = initializeAvailableTimes();
   const [availableTimes, dispatch] = React.useReducer(
     bookingStateReducer,
     initialAvailableTimes
@@ -130,7 +96,7 @@ const BookingsMain = () => {
               occasion
             )
           }
-          availableList={availableTimes.available}
+          availableList={availableTimes}
         />
         <BookingsList bookings={[]} />
       </article>

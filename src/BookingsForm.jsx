@@ -43,12 +43,9 @@ const BookingsForm = ({ onBookingChangeHandler, availableList }) => {
 
   function updateButton(bkdate, bktime, ocsion, gsts) {
     console.log(availableList);
-    const foundBooking = availableList?.filter(
-      (bk) => bk.bookingDate === bkdate && 
-      bk.bookingTimes.indexOf(bktime) > -1
-    );
-    const enableButton =
-      (foundBooking && foundBooking.length > 0) & (ocsion !== '') &&
+    const foundAvailable = availableList?.indexOf(bktime) > -1;
+    console.log(bktime);
+    const enableButton = foundAvailable & (ocsion !== '') &&
       gsts > 0;
     setEnableReservation(enableButton);
   }
