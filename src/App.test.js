@@ -24,7 +24,7 @@ test('Validate booking button', () => {
     available: ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
   };
 
-  render(<BookingsForm availableList={availableTimes.available} />);
+  render(<BookingsForm availableList={availableTimes.available} onDateChangeHandler={() => {}}/>);
   const bkdate = screen.getByTestId('test-booking-date');
   const bktime = screen.getByTestId('test-booking-time');
   const bkguests = screen.getByTestId('test-booking-guests');

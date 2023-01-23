@@ -10,7 +10,6 @@ const BookingsForm = ({ onDateChangeHandler, onBookingUpdateHandler, availableLi
   const [occasion, setOccation] = React.useState('');
   const [guests, setGuests] = React.useState(0);
   const [enableReservation, setEnableReservation] = useState(false);
-  const navigate = useNavigate();
   function handleDateChange(e) {
     const dateValue = e.target.value;
     setBookingDate(dateValue); // state variable updated here
