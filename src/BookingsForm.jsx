@@ -1,17 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { submitAPI } from './api';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
-const BookingsForm = ({ onBookingChangeHandler, availableList }) => {
+const BookingsForm = ({ onDateChangeHandler, onBookingUpdateHandler, availableList }) => {
   const [bookingDate, setBookingDate] = React.useState('');
   const [bookingTime, setBookingTime] = React.useState('');
   const [occasion, setOccation] = React.useState('');
   const [guests, setGuests] = React.useState(0);
   const [enableReservation, setEnableReservation] = useState(false);
+  const navigate = useNavigate();
   function handleDateChange(e) {
     const dateValue = e.target.value;
     setBookingDate(dateValue); // state variable updated here
+    onDateChangeHandler(dateValue);
   }
 
   function handleTimeChange(e) {
@@ -29,14 +32,25 @@ const BookingsForm = ({ onBookingChangeHandler, availableList }) => {
     setOccation(occasionValue); // state variable updated here
   }
 
-  function submitReservation(e) {
-    e.preventDefault();
-    onBookingChangeHandler(bookingDate, bookingTime, guests, occasion);
-    setBookingDate('');
-    setBookingTime('');
-    setGuests(0);
-    setOccation('');
+  function submitReservation(evt) {
+    evt.preventDefault();
+    console.log(evt.target);
+    const data = new FormData(evt.target);
+    submitForm(data);
   }
+
+  const submitForm = (formData) => {
+    const result = submitAPI(formData);
+    console.log('Result of submit:', result);
+    if(result){
+      onBookingUpdateHandler(bookingDate, bookingTime, guests, occasion);
+      setBookingDate('');
+      setBookingTime('');
+      setGuests(0);
+      setOccation('');
+    }
+  }
+
   useEffect(() => {
     updateButton(bookingDate, bookingTime, occasion, guests);
   }, [bookingDate, bookingTime, occasion, guests]);
@@ -53,7 +67,7 @@ const BookingsForm = ({ onBookingChangeHandler, availableList }) => {
       <h2 className='font-markazi text-4xl pb-2 md:text-5xl md:pb-4'>
         Book Now
       </h2>
-      <form className='flex flex-col gap-2'>
+      <form className='flex flex-col gap-2' onSubmit={submitReservation}>
         <label htmlFor='res-date'>Choose date</label>
         <input
           type='date'
@@ -107,7 +121,6 @@ const BookingsForm = ({ onBookingChangeHandler, availableList }) => {
           value='Make Your reservation'
           className='btn-primary w-64'
           disabled={!enableReservation}
-          onClick={(e) => submitReservation(e)}
           data-testid="test-booking-reserve"
         />
       </form>

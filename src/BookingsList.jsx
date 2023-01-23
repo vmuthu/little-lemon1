@@ -7,17 +7,10 @@ const BookingsList = (props) => {
       <h2 className='font-markazi text-4xl pb-2 md:text-5xl md:pb-4'>
         Existing Bookings
       </h2>
-    </article>
-  );
-};
-
-export default BookingsList;
-
-/*
-      {(!props.bookings?.booked || props.bookings?.booked.length === 0) && (
+      {(!props.bookings || props.bookings.length === 0) && (
         <span>No bookings found</span>
       )}
-      {props.bookings.booked && props.bookings.booked.length > 0 && (
+      {props.bookings && props.bookings.length > 0 && (
         <table aria-label='List of existing bookings' data-testid="test-bookings-list">
           <thead className='font-markazi text-xl md:text-2xl'>
             <tr>
@@ -28,7 +21,7 @@ export default BookingsList;
             </tr>
           </thead>
           <tbody>
-            {props.bookings.booked.map((item, i) => {
+            {props.bookings.map((item, i) => {
               return (
                 <tr key={i}>
                   <td>{item.bookingDate}</td>
@@ -42,4 +35,9 @@ export default BookingsList;
         </table>
       )}
 
-*/
+    </article>
+  );
+};
+
+export default BookingsList;
+
