@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 import BookingsForm from './BookingsForm';
+import BookingsMain from './BookingsMain';
 
 test('Renders the bookings form heading', () => {
   render(<BookingsForm />);
@@ -39,11 +40,11 @@ test('Validate booking button', () => {
 });
 
 test('bookings Form Date', () => {
-  render(<BookingsForm />);
+  render(<BookingsMain />);
   const bkdate = screen.getByTestId('test-booking-date');
   fireEvent.change(bkdate, { target: { value: '2023-05-24' } });
-  const bookButton = screen.getByTestId('test-booking-reserve');
-  expect(bookButton).toBeDisabled();
+  const bookingButton = screen.getByTestId('test-booking-reserve');
+  expect(bookingButton).toBeDisabled();
 });
 
 test('bookings Form Time', () => {
