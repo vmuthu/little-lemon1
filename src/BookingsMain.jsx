@@ -1,6 +1,7 @@
 import * as React from 'react';
 import BookingsForm from './BookingsForm';
 import BookingsList from './BookingsList';
+import Footer from './Footer';
 import ConfirmedBooking from './ConfirmedBooking';
 import { fetchAPI } from './api';
 import Header from './Header';
@@ -14,7 +15,7 @@ const updateBookings = (state, action) => {
       return state;
     }
     let bookings = [...state.bookings];
-    console.log('pushing booking:', bookings);
+    // console.log('pushing booking:', bookings);
     bookings.push({
       bookingDate: action.booking.bookingDate,
       bookingTime: action.booking.bookingTime,
@@ -72,16 +73,7 @@ const BookingsMain = () => {
   };
 
   const bookingUpdateHandler = (bookingDate, bookingTime, guests, occasion) => {
-    console.log(
-      'Received in booking update:',
-      bookingDate,
-      ',',
-      bookingTime,
-      ',',
-      guests,
-      ',',
-      occasion
-    );
+    // console.log('Received in booking update:', bookingDate, ',', bookingTime, ',', guests, ',', occasion );
     const booking = {
       bookingDate: bookingDate,
       bookingTime: bookingTime,
@@ -124,6 +116,8 @@ const BookingsMain = () => {
       }
         {/* <BookingsList bookings={bookedList.bookings} /> */}
       </article>
+      <Footer />
+
     </div>
   );
 };

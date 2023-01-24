@@ -45,12 +45,13 @@ const BookingsForm = ({
         setEnableReservation(true);
       }
     }
+
     if (timeTouched) {
       if (
         !bookingTime ||
         bookingTime === '' ||
         bookingTime === '--Select Time--' ||
-        bookingTime === 0
+        bookingTime === "0"
       ) {
         setTimeErrors('Time should be selected');
         setEnableReservation(false);
@@ -68,13 +69,12 @@ const BookingsForm = ({
         setEnableReservation(false);
       }
     }
-
     if (occasionTouched) {
       if (
         !occasion ||
         occasion === '' ||
         occasion === '--Select Occasion--' ||
-        occasion === 0
+        occasion === "0"
       ) {
         setOccasionErrors('Please choose occasion');
         setEnableReservation(false);
@@ -88,24 +88,28 @@ const BookingsForm = ({
   function handleDateChange(e) {
     const dateValue = e.target.value;
     setBookingDate(dateValue); // state variable updated here
+    setDateTouched(true);
     handleValidations();
   }
 
   function handleTimeChange(e) {
     const timeValue = e.target.value;
     setBookingTime(timeValue); // state variable updated here
+    setTimeTouched(true);
     handleValidations();
   }
 
   function handleGuestsChange(e) {
     const guestsVal = e.target.value;
     setGuests(guestsVal); // state variable updated here
+    setGuestTouched(true);
     handleValidations();
   }
 
   function handleOccasion(e) {
     const occasionValue = e.target.value;
     setOccation(occasionValue); // state variable updated here
+    setOccasionTouched(true);
     handleValidations();
   }
 
@@ -140,7 +144,7 @@ const BookingsForm = ({
   }
 
   return (
-    <article className='flex flex-col items-center text-sm md:items-start md:px-20 md:text-xl mx-4'>
+    <article className='flex flex-col items-center text-sm md:items-start md:px-20 md:text-xl mx-4 pb-4'>
       <h2 className='font-markazi text-4xl pb-2 md:text-5xl md:pb-4'>
         Book Now
       </h2>
@@ -153,7 +157,6 @@ const BookingsForm = ({
           value={bookingDate}
           className='input-ctl'
           onChange={(e) => handleDateChange(e)}
-          onBlur={() => setDateTouched(true)}
           data-testid='test-booking-date'
         />
         <span style={{ color: 'red' }}>{dateErrors}</span>
@@ -163,7 +166,6 @@ const BookingsForm = ({
           className='input-ctl'
           value={bookingTime}
           onChange={(e) => handleTimeChange(e)}
-          onBlur={() => setTimeTouched(true)}
           data-testid='test-booking-time'
         >
           <option value='0'>--Select Time--</option>
@@ -182,7 +184,6 @@ const BookingsForm = ({
           aria-label='Number of guests'
           className='input-ctl'
           onChange={(e) => handleGuestsChange(e)}
-          onBlur={() => setOccasionTouched(true)}
           data-testid='test-booking-guests'
         />
         <span style={{ color: 'red' }}>{guestErrors}</span>
@@ -192,7 +193,6 @@ const BookingsForm = ({
           className='input-ctl'
           value={occasion}
           onChange={(e) => handleOccasion(e)}
-          onBlur={() => setOccasionTouched(true)}
           data-testid='test-booking-occasion'
         >
           <option value='0'>--Select Occasion--</option>
@@ -203,6 +203,7 @@ const BookingsForm = ({
         <input
           type='submit'
           value='Make Your reservation'
+          aria-label='On Click'
           className='btn-primary w-64'
           disabled={!enableReservation}
           data-testid='test-booking-reserve'

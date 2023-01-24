@@ -9,7 +9,7 @@ const WeekSpecials = () => {
     <section className='flex flex-col'>
       <div className='flex justify-between items-center px-1 py-2 md:px-4 md:py-4'>
           <h2 className='font-markazi text-4xl pb-2 md:text-5xl md:pb-4'>This Week's Specials!</h2>
-          <input type='button' value='Online Menu' className='btn-primary' />
+          <input type='button' value='Online Menu' className='btn-primary' onClick={()=> alert('Upcoming feature')} />
       </div>
       <div className='flex flex-col mx-2 md:flex-row md:mx-6 mb-2 md:mb-6'>
         <SpecialsItem title="Greek Salad" price="12.99" description="The famous is a traditional salad originating from Greece. This simple salad is usually made with a combination of romaine lettuce, scallions, dill, olive oil, red wine vinegar, salt, black pepper, and often oregano. The lettuce is washed, rinsed, and cut into thin slices.">

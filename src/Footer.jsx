@@ -7,10 +7,6 @@ const Footer = () => {
   return (
     <footer>
       <div>
-        <img src={Logo} alt='Little Lemon Restaurant' />
-      </div>
-      <div>
-        <h4>Links</h4>
         <Nav />
       </div>
       <div>

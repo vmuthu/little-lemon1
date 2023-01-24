@@ -4,10 +4,10 @@ import WeekSpecials from './WeekSpecials';
 
 const Main = (props) => {
   return (
-    <>
+    <main>
       <HeroShot />
       <WeekSpecials />
-    </>
+    </main>
   );
 };
 
