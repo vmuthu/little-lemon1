@@ -44,7 +44,7 @@ const initializeAvailableTimes = () => {
 
 const getFromStorage = () => {
   const bookingsJson = localStorage.getItem('bookings');
-  console.log('get item:', bookingsJson);
+  // console.log('get item:', bookingsJson);
   if (bookingsJson) {
     const bookingsHead = JSON.parse(bookingsJson);
     return bookingsHead.bookings;
@@ -93,15 +93,15 @@ const BookingsMain = () => {
   };
 
   useEffect(() => {
-    console.log(bookedList.bookings);
+    // console.log(bookedList.bookings);
     if ((!localStorage.getItem('bookings') ||
       (localStorage.getItem('bookings')).length === 0) ||
       (bookedList && bookedList.bookings && bookedList.bookings.length > 0)) {
       const bkjson = JSON.stringify(bookedList);
       localStorage.setItem('bookings', bkjson);
-      console.log('saved localstorage:', bkjson);
+      // console.log('saved localstorage:', bkjson);
     } else {
-      console.log('empty list is not saved');
+      // console.log('empty list is not saved');
     }
   }, [bookedList]);
 
@@ -122,7 +122,7 @@ const BookingsMain = () => {
         showConfirmed && 
         <ConfirmedBooking handler={showFormHandler}/>
       }
-        <BookingsList bookings={bookedList.bookings} />
+        {/* <BookingsList bookings={bookedList.bookings} /> */}
       </article>
     </div>
   );

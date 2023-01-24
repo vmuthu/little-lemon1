@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const ConfirmedBooking = (props) => {
   return (
-    <article className='w-[50%] flex flex-col font-markazi m-4'>
+    <article className='flex flex-col font-markazi m-4'>
       <p className='text-3xl'>Your booking is confirmed!</p>
 
       <a className='text-xl text-blue-600' onClick={props.handler} href='#'>
